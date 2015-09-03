@@ -121,6 +121,6 @@ class GenericDevice(OrmBase):
         '''
             return true if there is some sensor evet in last "interval" minutes
         '''
-        if self.sensor_timestamp > (datetime.now() - timedelta(minutes=interval)):
+        if self.sensor_timestamp is not None and self.sensor_timestamp > (datetime.now() - timedelta(minutes=interval)):
             return True
         return False
