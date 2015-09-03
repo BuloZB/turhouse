@@ -1,0 +1,108 @@
+[main]
+    daemons = TurhouseOasis,
+    loging_conf = turhouse_logging.conf
+    db = sqlite:///turhouse.db
+
+[notification]
+    from_email = 
+    alarm_notify_emails = 
+
+[smtp]
+    server = 
+    port = 25
+    tls = 0
+    username = 
+    password = 
+
+[alarm_zones]
+    [[dum]]
+        subzones = sklep, prizemi, 2p
+    
+    [[sklep]]
+        subzones = sklep_obalka,
+    [[sklep_obalka]]
+        devices = dvere_sklep,
+    [[prizemi]]
+        subzones = prizemi_obalka,
+        devices = pir_obyvak,
+    [[prizemi_obalka]]
+        devices = dvere_vstupni,
+    [[2p]]
+        subzones = 2p_obalka,
+        devices = pir_pracovna,
+    [[2p_obalka]]
+        devices = dvere_balkon,
+    
+    [[obalka]]
+        subzones = sklep_obalka, prizemi_obalka, 2p_obalka
+    
+    [[auto]]
+        devices = cidlo_auto,
+
+    [[pozar]]
+        devices = kourove_cidlo_2p
+        status = armed
+
+[TurhouseOasis]
+    units = dongle_1, dongle_2
+
+[dongle_1]
+    [[params]]
+        device = /dev/ttyUSB0
+        pgx = zasuvka_1
+        pgy = zasuvka_2
+    
+    [[devices]]
+        [[[dvere_vstupni]]]
+            id = 01888816
+            type = JA-83M
+            beacon = 10
+        [[[dvere_sklep]]]
+            id = 01888805
+            type = JA-83M
+            beacon = 10
+        [[[pir_obyvak]]]
+            id = 06678931
+            type = JA-83P
+            beacon = 10
+        [[[pir_pracovna]]]
+            id = 06681543
+            type = JA-83P
+            beacon = 10
+        [[[dvere_balkon]]]
+            id = 00000001
+            type = JA-83M
+        [[[klicenka_1]]]
+            id = 08444132
+            type = RC-86K
+            [[[[options]]]]
+                beep = 0
+        [[[klicenka_2]]]
+            id = 08445268
+            type = RC-86K
+        [[[kourove_cidlo_2p]]]
+            type = JA-85ST
+            id = 7762166
+        [[[termostat]]]
+            type = TP-82N
+            id = 2449451
+        [[[sirena]]]
+            type = JA-80L
+            id = 5829307
+        [[[zasuvka_1]]]
+            type = AC-88
+            id = 13571933
+        [[[zasuvka_2]]]
+            type = AC-88
+            id = 13572061
+
+        
+        [[[cidlo_auto]]]
+            id = 00000002
+            type = JA-83M
+
+[dongle_2]
+    [[params]]
+        device = /dev/ttyUSB1
+    [[devices]]
+        # none - test of config with two dongles

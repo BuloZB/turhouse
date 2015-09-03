@@ -1,0 +1,9 @@
+*.pyc
+*.swp
+*.*~
+*.sublime*
+turhouse.conf
+turhouse.conf.dump
+turhouse.conf.dump.*
+run.sh
+*.db

@@ -1,0 +1,49 @@
+[ main ]
+daemons = TurhouseOasis,
+loging_conf = turhouse_logging.conf 
+db = 'sqlite:///turhouse.db'
+
+[notification]
+    from_email = sender@email
+    alarm_notify_emails = your@email, your@email2
+
+[smtp]
+    server = your.smtp.server.
+    port = 25
+    tls = 0
+    username = user
+    password = pass
+
+[ alarm_zones ]
+    [[ dum ]]
+        subzones = prizemi, 1p
+
+    [[ prizemi ]]
+        subzones = prizemi_obalka,
+        devices = 
+
+    [[ prizemi_obalka ]]
+        devices = 
+
+    [[ 1p ]]
+        subzones = 1p_obalka,
+        devices = 
+
+    [[ 1p_obalka ]]
+        devices = 
+
+    [[ obalka ]]
+        subzones = prizemi_obalka, 1p_obalka
+
+
+[ TurhouseOasis ]
+units = dongle_1,
+
+[ dongle_1 ]
+  [[ params ]]
+      device = /dev/ttyUSB0
+      pgx = 
+      pgy =
+
+  [[ devices ]]
+
