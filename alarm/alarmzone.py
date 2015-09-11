@@ -136,9 +136,13 @@ class AlarmZone(OrmBase):
         '''
             return boolean - true if there is no sensor event in previous "interval" in minutes
         '''
+        session = Glob.dbSession()
         for deviceName in self.getDevices():
             device = Glob.devices.getDevice(deviceName)
-            if device is not None and device.hasSensorEvent(interval):
-                return False
+            if device is not None:
+                session.add(device)
+                if device.hasSensorEvent(interval):
+                    session.close()
+                    return False
+        session.close()
         return True
-        

@@ -52,7 +52,7 @@ class AlarmManager(BaseManager):
     def tamperEventHandler(self, sender, event_type, params):
         Glob.logger.info(
             "Tamper %s " % sender)
-        self.alarm(sender, event_type)
+        self.alarm(sender, event_type, params)
 
     def controllerEventHandler(self, sender, event_type, params):
         Glob.logger.info(
