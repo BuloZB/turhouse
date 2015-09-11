@@ -73,7 +73,8 @@ class TurhouseOasis(object):
         for unit in Glob.config.oasisUnits():
             if self.units[unit].reader:
                 msg = self.units[unit].reader.next()
-                if re.search("^\[(\d{8})\]\s", msg):
+                m = re.search("^\[(\d{8})\]\s", msg)
+                if m:
                     msgDict = self.parseOasisMessage(unit, msg)
                     self.logOasisMessage(msgDict['name'], msg)
                     self.processMessage(unit, msgDict)
