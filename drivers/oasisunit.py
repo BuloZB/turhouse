@@ -84,8 +84,6 @@ class OasisUnit(object):
     def sendCommand(self, cmd):
         Glob.loggerOasis.info(cmd)
         self.device.send_command(cmd)
-        resp = self.reader.next()
-        Glob.loggerOasis.info(resp)
 
     def beep(self):
         st = self.beeper

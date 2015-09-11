@@ -4,6 +4,7 @@ import schedule
 import time
 import importlib
 import logging
+import re
 
 from glob import Glob
 from drivers.oasisunit import OasisUnit
@@ -72,10 +73,14 @@ class TurhouseOasis(object):
         for unit in Glob.config.oasisUnits():
             if self.units[unit].reader:
                 msg = self.units[unit].reader.next()
-                if msg:
+                if re.search("[(\d{8})\]\s", msg):
                     msgDict = self.parseOasisMessage(unit, msg)
                     self.logOasisMessage(msgDict['name'], msg)
                     self.processMessage(unit, msgDict)
+                elif msg == 'OK':
+                    Glob.loggerOasis.info(msg)
+                else:
+                    Glob.loggerOasis.warning('Unknown mesage: ' + msg)
 
     def checkDriversTimeout(self):
         '''
