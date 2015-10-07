@@ -82,15 +82,15 @@ class AlarmManager(BaseManager):
                     return True
         return False
 
-    def alarm(self):
+    def alarm(self, sender, event_type, params):
         '''
             method called in case of sensor event in armed zone
             action has to be set in child class
         '''
         pass
 
-    def autoAlarm(self):
+    def autoAlarm(self, sender, event_type, params):
         '''
             method called in case of sensor event in autoarmed zone
         '''
-        self.alarm()
+        self.alarm(sender, event_type, params)
